@@ -9,7 +9,7 @@ import com.genericLibrary.BaseLogin;
 
 public class Login {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		BaseLogin obj = new BaseLogin();
 		obj.openURL();
 		obj.signInPage();

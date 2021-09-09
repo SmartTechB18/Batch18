@@ -1,6 +1,9 @@
 package com.genericLibrary;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -22,7 +25,10 @@ public class BaseLogin {
 		return driver;
 	}
 	
-	public void signInPage() {	
+	public void signInPage() throws InterruptedException {	
+		JavascriptExecutor js = (JavascriptExecutor) driver; // type casting polymorphism
+		js.executeScript("arguments[0].setAttribute('style', 'background: blue; border: 2px solid red;');", pf.getSignButn());
+		Thread.sleep(5000);
 		pf.getSignButn().click();
 		if(driver.getTitle().contains("Login - My Store")) {
 			System.out.println("Landed to the signin page successfully...");
@@ -32,8 +38,16 @@ public class BaseLogin {
 		}
 	}
 	
-	public void login() {		
+	public void login() {	
+		JavascriptExecutor js = (JavascriptExecutor) driver; // type casting polymorphism
+		js.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 4px solid red;');", pf.getEmail());
+		
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		pf.getEmail().sendKeys(pf.getUserName());	
+		
+		js.executeScript("arguments[0].setAttribute('style', 'background: green; border: 4px solid blue;');", pf.getEmail());
+		
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		pf.getPass().sendKeys(pf.getPassword());	
 		pf.getSignBtn2().click();	
 		if(pf.getSt().getText().contains("Smart Tech")) {

@@ -11,6 +11,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.genericLibrary.BaseLogin;
 
@@ -21,8 +26,14 @@ public class Selenium_first {
 		
 		WebDriver driver = obj.openURL();
 		WebElement dressTab = driver.findElement(By.xpath("(//a[@class='sf-with-ul'])[4]"));
-		dressTab.click();
 		
+		
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//a[@class='sf-with-ul'])[4]")));
+	Wait wait1 = new FluentWait(driver).withTimeout(30, TimeUnit.SECONDS).pollingEvery(5, TimeUnit.SECONDS).ignoring(Exception.class);
+		
+		
+		dressTab.click();
 		
 		List<WebElement> allDress = new ArrayList<WebElement>();
 		allDress = driver.findElements(By.xpath("//div[@class='right-block']//div//span[@itemprop='price']"));
@@ -52,6 +63,18 @@ public class Selenium_first {
 		qty.clear();
 		qty.sendKeys("3");
 		
+		WebElement size = driver.findElement(By.xpath("//select[@name='group_1']"));
+		
+		Select sl = new Select(size);
+		sl.selectByValue("3");
+		
+		WebElement addCart = driver.findElement(By.xpath("//span[contains(text(),'Add to cart')]"));
+		addCart.click();
+		
+		driver.close();
+		
+	//	WebElement cross = driver.findElement(By.xpath("//*[@id=\"layer_cart\"]/div[1]/div[2]/div[4]/span/span"));
+	//	executor.executeScript("arguments[0].click();", cross);
 		
 		
 		
