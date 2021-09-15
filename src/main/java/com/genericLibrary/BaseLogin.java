@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.PageObjectModel.HomePageFactory;
+import com.utility.Highlight;
+import com.utility.Wait;
 
 public class BaseLogin {
 	
@@ -17,7 +19,7 @@ public class BaseLogin {
 	
 	public WebDriver openURL() {		
 		System.setProperty("webdriver.chrome.driver", 
-				"C:\\Users\\Urmi\\eclipse-workspaceUrmi\\Batch_18_Selenium\\All_Driver\\chromedriver.exe");
+				"./All_Driver/chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		pf = new HomePageFactory(driver);
@@ -26,9 +28,8 @@ public class BaseLogin {
 	}
 	
 	public void signInPage() throws InterruptedException {	
-		JavascriptExecutor js = (JavascriptExecutor) driver; // type casting polymorphism
-		js.executeScript("arguments[0].setAttribute('style', 'background: blue; border: 2px solid red;');", pf.getSignButn());
-		Thread.sleep(5000);
+		Highlight.getcolor(driver, pf.getSignButn());
+		
 		pf.getSignButn().click();
 		if(driver.getTitle().contains("Login - My Store")) {
 			System.out.println("Landed to the signin page successfully...");
@@ -38,17 +39,19 @@ public class BaseLogin {
 		}
 	}
 	
-	public void login() {	
-		JavascriptExecutor js = (JavascriptExecutor) driver; // type casting polymorphism
-		js.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 4px solid red;');", pf.getEmail());
+	public void login() throws InterruptedException {	
+	//	Highlight hl = new Highlight();
+		Highlight.getcolor(driver, pf.getSignButn());
 		
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		pf.getEmail().sendKeys(pf.getUserName());	
 		
-		js.executeScript("arguments[0].setAttribute('style', 'background: green; border: 4px solid blue;');", pf.getEmail());
+		Highlight.getcolor(driver, pf.getEmail(), "blue");
+			
+		pf.getEmail().sendKeys(pf.getUserName());		
+		Highlight.getcolor(driver, pf.getEmail());	
+		pf.getPass().sendKeys(pf.getPassword());
 		
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		pf.getPass().sendKeys(pf.getPassword());	
+		Wait.getExplicitWaitClicable(driver, pf.getSignBtn2());
 		pf.getSignBtn2().click();	
 		if(pf.getSt().getText().contains("Smart Tech")) {
 			System.out.println("User successfully logged in.");
