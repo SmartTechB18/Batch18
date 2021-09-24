@@ -11,9 +11,6 @@ public class HomePageFactory {
 	public HomePageFactory(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
-	private String userName = "jacksonheights2021@gmail.com";
-	private String password = "Smarttech18";
-	private String url = "http://automationpractice.com/index.php";
 	
 	@FindBy (className =  "login")
 	private WebElement signButn;
@@ -40,15 +37,6 @@ public class HomePageFactory {
 	}
 	public WebElement getSt() {
 		return st;
-	}
-	public String getUserName() {
-		return userName;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public String getUrl() {
-		return url;
 	}
 	
 	

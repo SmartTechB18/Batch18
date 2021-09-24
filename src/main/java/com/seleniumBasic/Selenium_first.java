@@ -21,7 +21,7 @@ import com.genericLibrary.BaseLogin;
 
 public class Selenium_first {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws Exception {
 		BaseLogin obj = new BaseLogin();
 		
 		WebDriver driver = obj.openURL();

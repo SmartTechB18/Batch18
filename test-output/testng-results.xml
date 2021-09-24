@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="1" ignored="0" total="1" passed="0">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="5413" started-at="2021-09-24T00:05:24Z" finished-at="2021-09-24T00:05:29Z">
+    <groups>
+      <group name="cucumber">
+        <method signature="AbstractTestNGCucumberTests.runScenario(cucumber.api.testng.PickleEventWrapper, cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:com.Cucumber.Runner@16e7dcfd]" name="runScenario" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
+      </group> <!-- cucumber -->
+    </groups>
+    <test name="Default test" duration-ms="5413" started-at="2021-09-24T00:05:24Z" finished-at="2021-09-24T00:05:29Z">
+      <class name="com.Cucumber.Runner">
+        <test-method status="PASS" signature="setUpClass()[pri:0, instance:com.Cucumber.Runner@16e7dcfd]" name="setUpClass" is-config="true" duration-ms="130" started-at="2021-09-24T00:05:24Z" finished-at="2021-09-24T00:05:24Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpClass -->
+        <test-method status="FAIL" signature="runScenario(cucumber.api.testng.PickleEventWrapper, cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:com.Cucumber.Runner@16e7dcfd]" name="runScenario" duration-ms="5204" started-at="2021-09-24T00:05:24Z" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2021-09-24T00:05:29Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["As a user I want to sign in with valid credentials to login to my account"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["login functionality"]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.NullPointerException">
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException
+at com.Cucumber.StepDef.click_on_sign_in_button_and_land_in_signin_page(StepDef.java:31)
+at ✽.click on sign in button and land in signin page(classpath:com/Cucumber/login.feature:25)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method status="PASS" signature="tearDownClass()[pri:0, instance:com.Cucumber.Runner@16e7dcfd]" name="tearDownClass" is-config="true" duration-ms="5" started-at="2021-09-24T00:05:29Z" finished-at="2021-09-24T00:05:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownClass -->
+      </class> <!-- com.Cucumber.Runner -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
