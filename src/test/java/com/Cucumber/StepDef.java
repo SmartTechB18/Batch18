@@ -3,31 +3,46 @@ package com.Cucumber;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 
 import com.PageObjectModel.HomePageFactory;
 import com.cofigLibrary.Credentials;
 import com.genericLibrary.BaseLogin;
 import com.utility.Highlight;
+import com.utility.TestScreenShot;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class StepDef {
-	BaseLogin bl;
 	HomePageFactory pf;
 	WebDriver driver;
 	
 	@Given("user is in the appliation homepage")
 	public void user_is_in_the_appliation_homepage() throws Exception {
-		bl = new BaseLogin();
-		bl.openURL();
+		System.setProperty("webdriver.chrome.driver", 
+				"./All_Driver/chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		pf = new HomePageFactory(driver);
+		driver.get(Credentials.getConfig("url"));
+		//return driver;
 	}
 
 	@Given("click on sign in button and land in signin page")
 	public void click_on_sign_in_button_and_land_in_signin_page() throws InterruptedException {
-	    bl.signInPage();
+		Highlight.getcolor(driver, pf.getSignButn());
+		
+		pf.getSignButn().click();
+		if(driver.getTitle().contains("Login - My Store")) {
+			System.out.println("Landed to the signin page successfully...");
+			TestScreenShot.captureScreenShot(driver, "HomePgae");
+		}
+		else {
+			System.out.println("Sign in page verifucation failed.");
+		}
 	    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
 

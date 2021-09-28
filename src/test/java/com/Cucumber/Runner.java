@@ -6,7 +6,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 @CucumberOptions(
 		strict = true,		// Finds pending steps and fail if find
 	//	plugin = 
-	//	features = {"src/test/java/com.Cucumber"},
+		features = {"Feature"},
 		tags = {"@positiveTC"},  // We can run or tag scenarios to execute
 		monochrome = true,
 		glue = {"com.Cucumber"},  // pass stepdefinition
