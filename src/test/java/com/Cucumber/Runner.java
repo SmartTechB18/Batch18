@@ -5,7 +5,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 
 @CucumberOptions(
 		strict = true,		// Finds pending steps and fail if find
-	//	plugin = 
+		plugin= {"pretty","json:target/cucumber-reports/cucumber.json"},
 		features = {"Feature"},
 		tags = {"@positiveTC"},  // We can run or tag scenarios to execute
 		monochrome = true,
