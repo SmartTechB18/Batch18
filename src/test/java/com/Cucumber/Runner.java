@@ -1,18 +1,24 @@
 package com.Cucumber;
 
-import cucumber.api.CucumberOptions;
-import cucumber.api.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
 
-@CucumberOptions(
-		strict = true,		// Finds pending steps and fail if find
-		plugin= {"pretty","json:target/cucumber-reports/cucumber.json"},
-		features = {"Feature"},
-		tags = {"@positiveTC"},  // We can run or tag scenarios to execute
-		monochrome = true,
-		glue = {"com.Cucumber"},  // pass stepdefinition
-		dryRun = false			// it checks if any pending scripts but will not fail execution
-		)
 
+@CucumberOptions(publish = true,
+plugin = { "pretty", 
+		"html:target/site/cucumber-pretty", 
+		"rerun:target/rerun.txt",
+	    "json:target/cucumber.json",
+	},
+
+	features = { "./Feature/Login.feature",}, 
+	glue = { "com.Cucumber" }, // step def package name
+	//tags= "@ScenarioTwo",
+	monochrome = true,// remove all ?? & console will be easily readable 
+	dryRun = false,//check feature file 
+	strict = true //stepdef>>every step has code or not
+	
+)
 public class Runner extends AbstractTestNGCucumberTests{
 
 }

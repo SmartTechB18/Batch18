@@ -20,7 +20,7 @@ public class HomePageFactory {
 	private WebElement pass;
 	@FindBy(xpath = "//i[@class='icon-lock left']")
 	private WebElement signBtn2;
-	@FindBy (xpath = "//span[contains(text(),'Smart Tech')]")
+	@FindBy (xpath = "//*[contains(text(),'Smart Tech')]")
 	private WebElement st;
 	
 	public WebElement getSignButn() {

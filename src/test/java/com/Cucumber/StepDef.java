@@ -8,13 +8,14 @@ import org.testng.Assert;
 
 import com.PageObjectModel.HomePageFactory;
 import com.cofigLibrary.Credentials;
-import com.genericLibrary.BaseLogin;
 import com.utility.Highlight;
 import com.utility.TestScreenShot;
 
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+
 
 public class StepDef {
 	HomePageFactory pf;
@@ -61,16 +62,22 @@ public class StepDef {
 
 	@Then("user is logged in to account homePage")
 	public void user_is_logged_in_to_account_homePage() {
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		Assert.assertEquals(pf.getSt().getText(), "Smart Tech");
 	}
 
-	@When("enter the invalid name{int}")
-	public void enter_the_invalid_name(Integer int1) {
+	@When("enter the invalid {string}")
+	public void enter_the_invalid(String string) {
 	    
 	}
 
-	@When("enter the invalid {int} and click sign in button")
-	public void enter_the_invalid_and_click_sign_in_button(Integer int1) {
-	    
+	@When("enter the invalid {string} and click sign in button")
+	public void enter_the_invalid_and_click_sign_in_button(String string) {
+	   
 	}
+
 }
